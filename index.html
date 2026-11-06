@@ -3,38 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta
-        name="description"
-        content="Conoce las mini hamburguesas de Bite&amp;Go: clásica, con tocineta o con doble queso."
-    >
-    <title>Bite&amp;Go | Mini hamburguesas</title>
-    <link rel="stylesheet" href="./css/styles.css">
+    <meta name="description" content="Conoce las mini hamburguesas de Bite&Go, tu mejor opción para un bocado delicioso." >
+    <title> Bite&Go | Mini hamburguesas</title>
+    <link rel="stylesheet" href="./frontend/styles/sts.css">
+    <!--Tipografia-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link   
+        href="https://fonts.googleapis.com/css2?family=Caacupe+One&family=Carter+One&family=Climate+Crisis:YEAR@1979&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-    <a href="#contenido-principal">Saltar al contenido principal</a>
 
     <header>
-        <a href="#inicio" aria-label="Bite&amp;Go, ir al inicio">
-            <img
-                src="./frontend/imagenes/logocompleto.jpeg"
-                alt="Bite&amp;Go"
-            >
-        </a>
 
-        <nav aria-label="Navegación principal">
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#menu">Menú</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
+        <div class="logo">
+            <img src="./frontend/imagenes/logocompleto.png" alt="Bite&Go">
+        </div> 
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#menu">Menú</a>
+            <a href="#contacto">Contacto</a>
+            <!--Añadí el formulario de contacto y una seccion de login para mayor registro y organizacion de los usuarios  -->
+            <div>
+                <a href="#formulario-contacto">
+                    <button type ="button">¡Contactar Ahora!</button>
+                </a>
+            </div>
+            <div>
+                <a href="login.html">
+                    <button type ="button">Iniciar Sesión</button>
+                </a>
+            </div>
         </nav>
+
     </header>
 
     <main id="contenido-principal">
-        <section id="inicio" aria-labelledby="titulo-inicio">
+
+        <section id="inicio">
             <div>
-                <p>Bite&amp;Go</p>
-                <h1 id="titulo-inicio">Mini hamburguesas para cualquier antojo</h1>
+                <h2>Bienvenido a Bite&Go</h2>
+                <h3 id="titulo-inicio">Mini hamburguesas para cualquier momento</h3>
                 <p>
                     Pide tu favorita o prueba una de cada una.
                 </p>
@@ -42,14 +54,14 @@
             </div>
             <img
                 src="./frontend/imagenes/hamburuesas.png"
-                alt="Selección de mini hamburguesas de Bite&amp;Go"
+                alt="Selección de mini hamburguesas de Bite&Go"
             >
         </section>
 
-        <section id="menu" aria-labelledby="titulo-menu">
+        <section id="menu" >
             <div>
                 <h2 id="titulo-menu">Nuestro menú</h2>
-                <p>¿Cuál se te antoja? Tenemos tres sabores para elegir.</p>
+                <p>¿Cuál se te antoja? Nuestro menú incluye una variedad de mini hamburguesas para todos los gustos.</p>
             </div>
 
             <div>
@@ -95,20 +107,60 @@
         </section>
 
         <section id="contacto" aria-labelledby="titulo-contacto">
-            <h2 id="titulo-contacto">Pide o consúltanos</h2>
-            <p>Llámanos o escríbenos por WhatsApp al <strong>304 5798 707</strong>.</p>
+            <h2 id="titulo-contacto">Contactanos!</h2>
             <p>
-                <a href="tel:+573045798707">Llamar al 304 5798 707</a>
+                <strong>¿Tiene alguna duda con tu pedido?</strong> Escribenos y te responderemos lo antes posible.
             </p>
-            <p>
-                <a href="https://wa.me/573045798707">Escribir por WhatsApp</a>
-            </p>
+
+            <a href="celular:3045798707">Llamar al 304 5798 707</a>
+            <a href="https://wa.me/573045798707">Escribir por WhatsApp</a>
             <a href="mailto:contacto@biteandgo.com">contacto@biteandgo.com</a>
+        </section>
+
+        <!-- Se añade un formulario de contacto para facilitar el registro de la comunicación con los clientes -->
+        <section id = "formulario-contacto">
+            <h2>Contactanos</h2>
+            
+
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" required></textarea>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
         </section>
     </main>
 
     <footer>
-        <p><small>&copy; 2026 Bite&amp;Go. Todos los derechos reservados.</small></p>
+        <section id = "contenido-footer">
+         
+            <div class="footer-marca">
+                <a href="#inicio" class="footer-nombre">Bite & Go</a>
+                <img src="./imagenes/logocompleto.jpeg" alt="Logo" class="footer-logo">
+            </div>
+
+            <div class="footer-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#menu">Menú</a>
+                <a href="#contacto">Contacto</a>
+
+            </div>
+
+            <div class="footer-social">
+                <a href="https://www.instagram.com/biteandgo" target="_blank">Instagram</a>
+            </div>
+
+        </section>
+        <p><small>&copy; 2026 Bite&Go. Todos los derechos reservados.</small></p>
     </footer>
 </body>
 </html>

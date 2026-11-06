@@ -1,0 +1,101 @@
+:root{ 
+    --primary-color: #f1e4ca; 
+    --secondary-color: #9a7456;
+    --tertiary-color: #BB9457;
+    --quaternary-color: #321e12;
+    --quinary-color: #99582A;
+    --font-family: 'Noto Sans SC', sans-serif;
+    --bg-color: var(--primary-color);
+    --letter-spacing: 0.5px;
+    
+}
+
+* {
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+
+html {
+    font-size:62.5%;
+    scroll-behavior:smooth;
+}
+
+body{
+  background-color: var(--bg-color);
+  font-family: var(--font-family);
+  font-size: 2rem;
+  font-weight: bolder;
+  line-height: 1.5;
+  letter-spacing: var(--letter-spacing);
+  color: var(--quaternary-color);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-family);
+  cursor: pointer;
+}
+
+header{ 
+  background-color: var(--secondary-color);
+  width: 100%; 
+  display:grid;
+  grid-template-columns: 1fr ;
+  align-items:center;
+  gap: 0; 
+  padding:0.5rem clamp(1rem, 4vw, 3rem) 1.5rem;
+  box-sizing: border-box; 
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo img {
+    width: clamp(120px, 20vw, 300px);
+    height: auto;
+    display: block;
+    margin-block: -5rem;
+}
+
+nav {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 3rem);
+}
+
+nav a {
+  color: var(--quaternary-color);
+  font-size: 3rem;
+  text-decoration: none;
+  transition: .3s;
+}
+nav a:hover, 
+nav a:focus-visible{
+  color: var(--tertiary-color);
+}
+
+nav button {
+  background: var(--tertiary-color);
+  color: var(--quaternary-color);
+  font-family: var(--font-family);
+  font-weight: bolder;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6rem;
+  font-size: 2rem;
+  border: none;
+  transition: .3s;
+}
+nav button:hover,
+nav button:focus-visible{
+  background: var(--primary-color);
+}
