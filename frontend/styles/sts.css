@@ -51,6 +51,10 @@ header{
   gap: 0; 
   padding:0.5rem clamp(1rem, 4vw, 3rem) 1.5rem;
   box-sizing: border-box; 
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .logo{
@@ -98,4 +102,90 @@ nav button {
 nav button:hover,
 nav button:focus-visible{
   background: var(--primary-color);
+}
+
+.perfil img {
+  width: 50px;
+  height: 50px;
+}
+
+.perfil a{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-direction: row;
+}
+
+#inicio {
+  min-height:auto;
+  padding: 0rem 0 0 5%;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  align-items: center;
+  gap: 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.inicio-texto {
+  position: relative;
+  z-index: 2;
+
+}
+.inicio-texto a {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.inicio-texto a:hover {
+  transform: translateY(-3px);
+  color: var(--secondary-color);
+
+}
+
+#inicio h2 {
+  color: var(--quaternary-color);
+  font-size: 7rem;
+  line-height: 1.1;
+  margin-bottom: 2.5rem;
+  font-weight: bolder;
+}
+#inicio strong{
+  color: var(--quinary-color);
+  font-size: 15rem;
+}
+
+#titulo-inicio {
+  color: var(--quinary-color);
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  font-weight: bolder;
+}
+
+#inicio p {
+  color: var(--quinary-color);
+  font-size: 3rem;
+  opacity: 0.8;
+}
+
+.foto {
+  height: min(100rem, 100vh);
+  position: relative;
+  overflow: hidden;
+}
+
+.foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%);
+  mask-image: linear-gradient(to right, transparent 0%, black 25%);
 }
