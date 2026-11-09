@@ -88,7 +88,8 @@ nav a:focus-visible{
   color: var(--tertiary-color);
 }
 
-nav button {
+nav .boton-contacto {
+  display: inline-block;
   background: var(--tertiary-color);
   color: var(--quaternary-color);
   font-family: var(--font-family);
@@ -96,24 +97,11 @@ nav button {
   padding: 0.75rem 1.5rem;
   border-radius: 6rem;
   font-size: 2rem;
-  border: none;
   transition: .3s;
 }
-nav button:hover,
-nav button:focus-visible{
+nav .boton-contacto:hover,
+nav .boton-contacto:focus-visible{
   background: var(--primary-color);
-}
-
-.perfil img {
-  width: 50px;
-  height: 50px;
-}
-
-.perfil a{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-direction: row;
 }
 
 #inicio {
@@ -148,7 +136,7 @@ nav button:focus-visible{
 
 }
 
-#inicio h2 {
+#inicio h1 {
   color: var(--quaternary-color);
   font-size: 7rem;
   line-height: 1.1;
@@ -188,4 +176,146 @@ nav button:focus-visible{
 
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%);
   mask-image: linear-gradient(to right, transparent 0%, black 25%);
+}
+
+#menu {
+  padding: 5rem clamp(2rem, 6vw, 8rem);
+}
+
+#menu > div:first-child {
+  max-width: 75rem;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+#titulo-menu {
+  margin-bottom: 1rem;
+  font-size: 4rem;
+}
+
+#menu > div:first-child p {
+  font-size: 2rem;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
+  gap: 2.5rem;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+.menu-grid article {
+  overflow: hidden;
+  background-color: #fffaf0;
+  border-radius: 1.5rem;
+  box-shadow: 0 0.6rem 1.8rem rgb(50 30 18 / 12%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-grid article:hover {
+  transform: translateY(-0.4rem);
+  box-shadow: 0 1rem 2.4rem rgb(50 30 18 / 18%);
+}
+
+.menu-grid article img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.menu-grid article h3,
+.menu-grid article p {
+  margin-inline: 2rem;
+}
+
+.menu-grid article h3 {
+  margin-top: 1.5rem;
+  font-size: 2.5rem;
+}
+
+.menu-grid article p {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: 1.7rem;
+  font-weight: normal;
+}
+
+@media (max-width: 768px) {
+  .logo img {
+    width: clamp(120px, 35vw, 220px);
+    margin-block: -2rem;
+  }
+
+  nav {
+    gap: 1.2rem;
+  }
+
+  nav a {
+    font-size: 2rem;
+  }
+
+  nav .boton-contacto {
+    font-size: 1.8rem;
+  }
+
+  #inicio {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 3rem 2rem 0;
+  }
+
+  #inicio h1 {
+    font-size: 4.5rem;
+  }
+
+  #inicio strong {
+    font-size: 7rem;
+  }
+
+  #titulo-inicio,
+  #inicio p {
+    font-size: 2.2rem;
+  }
+
+  .foto {
+    height: min(45rem, 60vh);
+  }
+
+  .foto img {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  #menu {
+    padding-block: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    gap: 0.8rem;
+  }
+
+  nav a {
+    font-size: 1.7rem;
+  }
+
+  nav .boton-contacto {
+    font-size: 1.6rem;
+    padding: 0.6rem 1rem;
+  }
+
+  #inicio {
+    padding-inline: 1.5rem;
+  }
+
+  #inicio h1 {
+    font-size: 3.6rem;
+  }
+
+  #inicio strong {
+    font-size: 5.5rem;
+  }
 }

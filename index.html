@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Conoce las mini hamburguesas de Bite&Go, tu mejor opción para un bocado delicioso." >
-    <title> Bite&Go | Mini hamburguesas</title>
+    <meta name="description" content="Conoce las mini hamburguesas de Bite&Go, tu mejor opción para un bocado delicioso.">
+    <title>Bite&Go | Mini hamburguesas</title>
     <link rel="stylesheet" href="./frontend/styles/sts.css">
     <!--Tipografia-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,54 +20,42 @@
 
         <div class="logo">
             <a href="./index.html">
-            <img src="./frontend/imagenes/logocompleto.png" alt="Bite&Go">
+                <img src="./frontend/imagenes/logocompleto.png" alt="Bite&Go">
             </a>
         </div> 
 
-        <nav>
+        <nav aria-label="Navegación principal">
             <a href="#inicio">Inicio</a>
             <a href="#menu">Menú</a>
             <a href="#contacto">Contacto</a>
-            <!--Añadí el formulario de contacto y una seccion de login para mayor registro y organizacion de los usuarios  -->
-            <div>
-                <a href="#formulario-contacto">
-                    <button type ="button">¡Contactar Ahora!</button>
-                </a>
-            </div>
-            <div class="perfil" >
-                <a href="Mi perfil">
-                    <img src="./frontend/imagenes/icono-pérfil.png" alt="icono-pérfil">
-                    <button type ="button">Mi perfil</button>
-                </a>
-            </div>
+            <a class="boton-contacto" href="#formulario-contacto">¡Contactar ahora!</a>
         </nav>
 
     </header>
 
     <main>
 
-        <section id="inicio">
+        <section id="inicio" aria-labelledby="titulo-inicio-principal">
             <div class="inicio-texto">
-                <h2>Bienvenido a <strong>Bite&GO</strong></h2>
-                <h3 id="titulo-inicio"> 
-                    Mini hamburguesas, máxima comodidad </h3>
+                <h1 id="titulo-inicio-principal">Bienvenido a <strong>Bite&Go</strong></h1>
+                <h2 id="titulo-inicio">Mini hamburguesas, máxima comodidad</h2>
                 <p>
                     Disfruta sin parar: abre, come y continúa...
                 </p>
                 <a href="#menu">Ver el menú</a>
             </div>
             <div class="foto">
-                <img src="./frontend/imagenes/producto.jpeg" alt="produto">
+                <img src="./frontend/imagenes/producto.jpeg" alt="Mini hamburguesas de Bite&Go">
             </div>  
         </section>
 
-        <section id="menu" >
+        <section id="menu" aria-labelledby="titulo-menu">
             <div>
                 <h2 id="titulo-menu">Nuestro menú</h2>
                 <p>¿Cuál se te antoja? Nuestro menú incluye una variedad de mini hamburguesas para todos los gustos.</p>
             </div>
 
-            <div>
+            <div class="menu-grid">
                 <article aria-labelledby="titulo-clasica">
                     <img
                         src="./frontend/imagenes/clasica.png"
@@ -110,29 +98,27 @@
         </section>
 
         <section id="contacto" aria-labelledby="titulo-contacto">
-            <h2 id="titulo-contacto">Contactanos!</h2>
+            <h2 id="titulo-contacto">¡Contáctanos!</h2>
             <p>
-                <strong>¿Tiene alguna duda con tu pedido?</strong> Escribenos y te responderemos lo antes posible.
+                <strong>¿Tienes alguna duda con tu pedido?</strong> Escríbenos y te responderemos lo antes posible.
             </p>
 
-            <a href="celular:3045798707">Llamar al 304 5798 707</a>
-            <a href="https://wa.me/573045798707">Escribir por WhatsApp</a>
+            <a href="tel:+573045798707">Llamar al 304 5798 707</a>
+            <a href="https://wa.me/573045798707" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
             <a href="mailto:contacto@biteandgo.com">contacto@biteandgo.com</a>
         </section>
 
-        <!-- Se añade un formulario de contacto para facilitar el registro de la comunicación con los clientes -->
-        <section id = "formulario-contacto">
-            <h2>Contactanos</h2>
-            
+        <section id="formulario-contacto" aria-labelledby="titulo-formulario-contacto">
+            <h2 id="titulo-formulario-contacto">Escríbenos</h2>
 
             <form id="contact-form">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <input type="text" id="nombre" name="nombre" autocomplete="name" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
                 </div>
                 <div class="form-group">
                     <label for="mensaje">Mensaje:</label>
@@ -144,11 +130,11 @@
     </main>
 
     <footer>
-        <section id = "contenido-footer">
+        <section id="contenido-footer">
          
             <div class="footer-marca">
                 <a href="#inicio" class="footer-nombre">Bite & Go</a>
-                <img src="./imagenes/logocompleto.jpeg" alt="Logo" class="footer-logo">
+                <img src="./frontend/imagenes/logocompleto.png" alt="Logo de Bite&Go" class="footer-logo">
             </div>
 
             <div class="footer-links">
@@ -159,7 +145,7 @@
             </div>
 
             <div class="footer-social">
-                <a href="https://www.instagram.com/biteandgo" target="_blank">Instagram</a>
+                <a href="https://www.instagram.com/biteandgo" target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
 
         </section>
