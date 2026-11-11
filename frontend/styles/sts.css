@@ -500,6 +500,157 @@ footer > p {
   letter-spacing: normal;
 }
 
+@media (max-width: 768px) {
+    section {
+        scroll-margin-top: 2rem;
+    }
+
+    header {
+        padding: 0.5rem 1.5rem 1rem;
+    }
+
+    .logo img {
+        width: clamp(12rem, 35vw, 20rem);
+        margin-block: -2rem;
+    }
+
+    nav {
+        gap: 1rem 1.5rem;
+    }
+
+    nav a {
+        font-size: clamp(1.6rem, 2.5vw, 2rem);
+    }
+
+    nav .boton-contacto {
+        padding: 0.6rem 1.2rem;
+        font-size: 1.6rem;
+    }
+
+    .perfil img {
+        width: 3.6rem;
+        height: 3.6rem;
+    }
+
+    #inicio {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 4rem 2rem 0;
+        text-align: center;
+    }
+
+    #inicio h1 {
+        font-size: clamp(3rem, 7vw, 5rem);
+    }
+
+    #inicio strong,
+    #inicio b,
+    #inicio b:nth-child(3) {
+        font-size: clamp(5rem, 13vw, 9rem);
+    }
+
+    #titulo-inicio-principal {
+        font-size: clamp(2.2rem, 5vw, 3rem);
+    }
+
+    #inicio p {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+    }
+
+    .foto {
+        height: clamp(24rem, 65vw, 45rem);
+    }
+
+    #titulo-menu {
+        font-size: clamp(3.6rem, 8vw, 5rem);
+    }
+
+    #menu b {
+        font-size: clamp(2.4rem, 5vw, 3rem);
+    }
+
+    #menu p {
+        font-size: 1.8rem;
+    }
+
+    #titulo-contacto {
+        font-size: clamp(4rem, 9vw, 6rem);
+    }
+
+    #formulario-contacto {
+        padding: 3rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 1.8rem;
+    }
+
+    #contenido-footer {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .footer-marca {
+        grid-column: 1 / -1;
+    }
+
+    footer > p {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding-inline: 1rem;
+    }
+
+    nav {
+        gap: 0.8rem 1.2rem;
+    }
+
+    nav .boton-contacto {
+        padding: 0.5rem 1rem;
+    }
+
+    .perfil button {
+        font-size: 1.5rem;
+    }
+
+    #inicio {
+        padding-inline: 1.5rem;
+    }
+
+    #menu {
+        padding: 4rem 1.5rem;
+    }
+
+    #contacto {
+        padding: 5rem 2rem 3rem;
+    }
+
+    #formulario-contacto {
+        margin: 0 1.5rem 5rem;
+        padding: 2rem;
+    }
+
+    #contact-form {
+        gap: 2.5rem;
+    }
+
+    footer {
+        padding-inline: 2rem;
+    }
+
+    #contenido-footer {
+        gap: 2rem;
+    }
+
+    .footer-social img {
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
 
 
 
