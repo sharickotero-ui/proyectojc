@@ -1,207 +1,237 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Conoce las mini hamburguesas de Bite&Go, tu mejor opción para un bocado delicioso.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Conoce las mini hamburguesas de Bite&Go, tu mejor opción para un bocado delicioso."
+    />
     <title>Bite&Go | Mini hamburguesas</title>
-    <link rel="stylesheet" href="./frontend/styles/sts.css">
-    <link rel="icon" href="./frontend/imagenes/logo.png">
+    <link rel="stylesheet" href="./frontend/styles/sts.css" />
+    <link rel="icon" href="./frontend/imagenes/logo.png" />
 
     <!-- // Tipografía  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-    href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap"
-    rel="stylesheet">
-    
-</head>
+      href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-
+  <body>
     <header>
+      <div class="logo">
+        <a href="./index.html">
+          <img src="./frontend/imagenes/logocompleto.png" alt="Bite&Go" />
+        </a>
+      </div>
 
-        <div class="logo">
-            <a href="./index.html">
-                <img src="./frontend/imagenes/logocompleto.png" alt="Bite&Go">
-            </a>
+      <nav aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#menu">Menú</a>
+        <a href="#contacto">Contacto</a>
+
+        <div>
+          <a href="#formulario-contacto" class="boton-contacto"
+            >¡Contactar Ahora!</a
+          >
         </div>
 
-        <nav aria-label="Navegación principal">
-            <a href="#inicio">Inicio</a>
-            <a href="#menu">Menú</a>
-            <a href="#contacto">Contacto</a>
-
-            
-            <div>
-                <a href="#formulario-contacto" class="boton-contacto">¡Contactar Ahora!</a>
-            </div>
-
-           
-            <div class="perfil">
-                <a href="./login.html">
-                    <img src="./frontend/imagenes/icono-perfil.png" alt="" aria-hidden="true">
-                    <span>Mi perfil</span>
-                </a>
-            </div>
-        </nav>
-
+        <div class="perfil">
+          <a href="./login.html">
+            <img
+              src="./frontend/imagenes/icono-perfil.png"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>Mi perfil</span>
+          </a>
+        </div>
+      </nav>
     </header>
 
     <main>
+      <section id="inicio" aria-labelledby="titulo-inicio-principal">
+        <div class="inicio-texto">
+          <h1>Bienvenido a <strong>Bite</strong><b>&</b><b>Go</b></h1>
+          <h2 id="titulo-inicio-principal">
+            Mini hamburguesas, máxima comodidad
+          </h2>
 
-        
-        <section id="inicio" aria-labelledby="titulo-inicio-principal">
+          <p>Disfruta sin parar: abre, come y continúa...</p>
 
-            <div class="inicio-texto">
-                <h1>Bienvenido a <strong>Bite</strong><b>&</b><b>Go</b></h1>
-                <h2 id="titulo-inicio-principal">Mini hamburguesas, máxima comodidad</h2>
+          <a href="#menu">Ver el menú</a>
+        </div>
 
-                <p>
-                    Disfruta sin parar: abre, come y continúa...
-                </p>
+        <div class="foto">
+          <img
+            src="./frontend/imagenes/producto.jpeg"
+            alt="Mini hamburguesas de Bite&Go"
+          />
+        </div>
+      </section>
 
-                <a href="#menu">Ver el menú</a>
-            </div>
+      <!-- // MENÚ -->
+      <section id="menu" aria-labelledby="titulo-menu">
+        <div>
+          <h2 id="titulo-menu">Nuestro menú</h2>
+          <b>¿Cuál se te antoja? </b>
+          <p>
+            Nuestro menú incluye una variedad de mini hamburguesas para todos
+            los gustos.
+          </p>
+        </div>
 
-            <div class="foto">
-                <img src="./frontend/imagenes/producto.jpeg" alt="Mini hamburguesas de Bite&Go">
-            </div>
+        <div class="menu-grid">
+          <article aria-labelledby="titulo-clasica">
+            <img
+              src="./frontend/imagenes/clasica.png"
+              alt="Mini hamburguesa clásica con queso, vegetales y pepinillos"
+              loading="lazy"
+            />
 
-        </section>
-
-        <!-- // MENÚ -->
-        <section id="menu" aria-labelledby="titulo-menu">
-
-            <div>
-                <h2 id="titulo-menu">Nuestro menú</h2>
-                <b>¿Cuál se te antoja? </b>
-                <p>Nuestro menú incluye una variedad de mini hamburguesas para todos los gustos.</p>
-            </div>
-
-            <div class="menu-grid">
-
-                <article aria-labelledby="titulo-clasica">
-                    <img src="./frontend/imagenes/clasica.png"
-                        alt="Mini hamburguesa clásica con queso, vegetales y pepinillos"
-                        loading="lazy">
-
-                    <h3 id="titulo-clasica">Mini clásica</h3>
-
-                    <p>
-                        Carne de res, queso cheddar, lechuga fresca, tomate, cebolla
-                        caramelizada, pepinillos y salsa de la casa.
-                    </p>
-                </article>
-
-                <article aria-labelledby="titulo-bacon">
-                    <img src="./frontend/imagenes/bacon.png"
-                        alt="Mini hamburguesa con queso cheddar y tocineta crujiente"
-                        loading="lazy">
-
-                    <h3 id="titulo-bacon">Mini bacon crunch</h3>
-
-                    <p>
-                        Carne de res, queso cheddar, tocineta crujiente, lechuga fresca,
-                        tomate y salsa miel-mostaza.
-                    </p>
-                </article>
-
-                <article aria-labelledby="titulo-doble-queso">
-                    <img src="./frontend/imagenes/doble.png"
-                        alt="Mini hamburguesa con queso cheddar y queso mozzarella"
-                        loading="lazy">
-
-                    <h3 id="titulo-doble-queso">Mini double cheese</h3>
-
-                    <p>
-                        Carne de res, queso cheddar, queso mozzarella, lechuga fresca,
-                        tomate y salsa de la casa.
-                    </p>
-                </article>
-
-            </div>
-        </section>
-
-        <!-- // CONTACTO  -->
-        <section id="contacto" aria-labelledby="titulo-contacto">
-
-            <h2 id="titulo-contacto">¡Contáctanos!</h2>
+            <h3 id="titulo-clasica">Mini clásica</h3>
 
             <p>
-                <strong>¿Tienes alguna duda con tu pedido?</strong>
-                Escríbenos y te responderemos lo antes posible.
+              Carne de res, queso cheddar, lechuga fresca, tomate, cebolla
+              caramelizada, pepinillos y salsa de la casa.
             </p>
+          </article>
 
-            <a href="tel:3045798707">Llamar al 304 5798 707</a>
-            <a href="https://wa.me/573045798707">Escribir por WhatsApp</a>
-            <a href="mailto:contacto@biteandgo.com">contacto@biteandgo.com</a>
+          <article aria-labelledby="titulo-bacon">
+            <img
+              src="./frontend/imagenes/bacon.png"
+              alt="Mini hamburguesa con queso cheddar y tocineta crujiente"
+              loading="lazy"
+            />
 
-        </section>
+            <h3 id="titulo-bacon">Mini bacon crunch</h3>
 
-        <!-- //FORMULARIO DE CONTACTO  -->
-        <section id="formulario-contacto" aria-labelledby="titulo-formulario-contacto">
+            <p>
+              Carne de res, queso cheddar, tocineta crujiente, lechuga fresca,
+              tomate y salsa miel-mostaza.
+            </p>
+          </article>
 
-            <h2 id="titulo-formulario-contacto">Escríbenos</h2>
+          <article aria-labelledby="titulo-doble-queso">
+            <img
+              src="./frontend/imagenes/doble.png"
+              alt="Mini hamburguesa con queso cheddar y queso mozzarella"
+              loading="lazy"
+            />
 
-            <form id="contact-form">
+            <h3 id="titulo-doble-queso">Mini double cheese</h3>
 
-                <div class="form-group">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" autocomplete="name" required>
-                </div>
+            <p>
+              Carne de res, queso cheddar, queso mozzarella, lechuga fresca,
+              tomate y salsa de la casa.
+            </p>
+          </article>
+        </div>
+      </section>
 
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" autocomplete="email" required>
-                </div>
+      <!-- // CONTACTO  -->
+      <section id="contacto" aria-labelledby="titulo-contacto">
+        <h2 id="titulo-contacto">¡Contáctanos!</h2>
 
-                <div class="form-group">
-                    <label for="mensaje">Mensaje:</label>
-                    <textarea id="mensaje" name="mensaje" required></textarea>
-                </div>
+        <p>
+          <strong>¿Tienes alguna duda con tu pedido?</strong>
+          Escríbenos y te responderemos lo antes posible.
+        </p>
 
-                <button type="submit">Enviar</button>
+        <a href="tel:3045798707">Llamar al 304 5798 707</a>
+        <a href="https://wa.me/573045798707">Escribir por WhatsApp</a>
+        <a href="mailto:contacto@biteandgo.com">contacto@biteandgo.com</a>
+      </section>
 
-            </form>
+      <!-- //FORMULARIO DE CONTACTO  -->
+      <section
+        id="formulario-contacto"
+        aria-labelledby="titulo-formulario-contacto"
+      >
+        <h2 id="titulo-formulario-contacto">Escríbenos</h2>
 
-        </section>
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              autocomplete="name"
+              maxlength="100"
+              required
+            />
+          </div>
 
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje">Mensaje:</label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              maxlength="1000"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit">Enviar</button>
+          <p id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
     </main>
 
     <!-- //FOOTER - -->
 
     <footer>
+      <section id="contenido-footer">
+        <div class="footer-marca">
+          <a href="./index.html"
+            ><img
+              src="./frontend/imagenes/logocompleto.png"
+              alt="Logo de Bite&Go"
+              class="footer-logo"
+          /></a>
+        </div>
 
-        <section id="contenido-footer">
+        <div class="footer-links">
+          <a href="#inicio">Inicio</a>
+          <a href="#menu">Menú</a>
+          <a href="#contacto">Contacto</a>
+        </div>
 
-            <div class="footer-marca">
-                <a href="./index.html"><img src="./frontend/imagenes/logocompleto.png" alt="Logo de Bite&Go" class="footer-logo"></a>
-                
-            </div>
+        <div class="footer-social">
+          <h3>Redes Sociales</h3>
+          <a
+            href="https://www.instagram.com/biteandgo"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram de Bite&Go"
+          >
+            <img
+              src="./frontend/imagenes/instagram-logo-instagram-icon-transparent-free-png.webp"
+              alt=""
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+      </section>
 
-            <div class="footer-links">
-                <a href="#inicio">Inicio</a>
-                <a href="#menu">Menú</a>
-                <a href="#contacto">Contacto</a>
-            </div>
-
-            <div class="footer-social">
-               <h3>Redes Sociales</h3>
-                <a href="https://www.instagram.com/biteandgo" target="_blank" rel="noopener noreferrer"  aria-label="Instagram de Bite&Go">
-                    <img src="./frontend/imagenes/instagram-logo-instagram-icon-transparent-free-png.webp" alt="" aria-hidden="true">
-                </a>
-            </div>
-
-        </section>
-
-        <p><small>&copy; 2026 Bite&Go. Todos los derechos reservados.</small></p>
-
+      <p><small>&copy; 2026 Bite&Go. Todos los derechos reservados.</small></p>
     </footer>
 
-        <script src="./frontend/dinamica/dinamica.js"></script>
-</body>
-
-
-
+    <script src="./frontend/dinamica/dinamica.js"></script>
+  </body>
 </html>

@@ -408,7 +408,17 @@ nav .boton-contacto:focus-visible{
   transform: translateY(-0.3rem);
 }
 
+#form-status {
+  font-size: 1.8rem;
+}
 
+#form-status.ok { color: #2e6b3a; }
+#form-status.error { color: #a12a2a; }
+
+#contact-form button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 /* FOOTER */
 footer {
   padding: 3rem 10% 1.5rem;
