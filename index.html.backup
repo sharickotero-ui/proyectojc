@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conoce las mini hamburguesas de Bite&Go, tu mejor opción para un bocado delicioso.">
+    <title>Bite&Go | Mini hamburguesas</title>
+    <link rel="stylesheet" href="./frontend/styles/sts.css">
+    <!--Tipografia-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link   
+        href="https://fonts.googleapis.com/css2?family=Caacupe+One&family=Carter+One&family=Climate+Crisis:YEAR@1979&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            <a href="./index.html">
+                <img src="./frontend/imagenes/logocompleto.png" alt="Bite&Go">
+            </a>
+        </div> 
+
+        <nav aria-label="Navegación principal">
+            <a href="#inicio">Inicio</a>
+            <a href="#menu">Menú</a>
+            <a href="#contacto">Contacto</a>
+            <a class="boton-contacto" href="#formulario-contacto">¡Contactar ahora!</a>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section id="inicio" aria-labelledby="titulo-inicio-principal">
+            <div class="inicio-texto">
+                <h1 id="titulo-inicio-principal">Bienvenido a <strong>Bite&Go</strong></h1>
+                <h2 id="titulo-inicio">Mini hamburguesas, máxima comodidad</h2>
+                <p>
+                    Disfruta sin parar: abre, come y continúa...
+                </p>
+                <a href="#menu">Ver el menú</a>
+            </div>
+            <div class="foto">
+                <img src="./frontend/imagenes/producto.jpeg" alt="Mini hamburguesas de Bite&Go">
+            </div>  
+        </section>
+
+        <section id="menu" aria-labelledby="titulo-menu">
+            <div>
+                <h2 id="titulo-menu">Nuestro menú</h2>
+                <p>¿Cuál se te antoja? Nuestro menú incluye una variedad de mini hamburguesas para todos los gustos.</p>
+            </div>
+
+            <div class="menu-grid">
+                <article aria-labelledby="titulo-clasica">
+                    <img
+                        src="./frontend/imagenes/clasica.png"
+                        alt="Mini hamburguesa clásica con queso, vegetales y pepinillos"
+                        loading="lazy"
+                    >
+                    <h3 id="titulo-clasica">Mini clásica</h3>
+                    <p>
+                        Carne de res, queso cheddar, lechuga fresca, tomate, cebolla
+                        caramelizada, pepinillos y salsa de la casa.
+                    </p>
+                </article>
+
+                <article aria-labelledby="titulo-bacon">
+                    <img
+                        src="./frontend/imagenes/bacon.png"
+                        alt="Mini hamburguesa con queso cheddar y tocineta crujiente"
+                        loading="lazy"
+                    >
+                    <h3 id="titulo-bacon">Mini bacon crunch</h3>
+                    <p>
+                        Carne de res, queso cheddar, tocineta crujiente, lechuga fresca,
+                        tomate y salsa miel-mostaza.
+                    </p>
+                </article>
+
+                <article aria-labelledby="titulo-doble-queso">
+                    <img
+                        src="./frontend/imagenes/coble.png"
+                        alt="Mini hamburguesa con queso cheddar y queso mozzarella"
+                        loading="lazy"
+                    >
+                    <h3 id="titulo-doble-queso">Mini double cheese</h3>
+                    <p>
+                        Carne de res, queso cheddar, queso mozzarella, lechuga fresca,
+                        tomate y salsa de la casa.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contacto" aria-labelledby="titulo-contacto">
+            <h2 id="titulo-contacto">¡Contáctanos!</h2>
+            <p>
+                <strong>¿Tienes alguna duda con tu pedido?</strong> Escríbenos y te responderemos lo antes posible.
+            </p>
+
+            <a href="tel:+573045798707">Llamar al 304 5798 707</a>
+            <a href="https://wa.me/573045798707" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+            <a href="mailto:contacto@biteandgo.com">contacto@biteandgo.com</a>
+        </section>
+
+        <section id="formulario-contacto" aria-labelledby="titulo-formulario-contacto">
+            <h2 id="titulo-formulario-contacto">Escríbenos</h2>
+
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" required></textarea>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <section id="contenido-footer">
+         
+            <div class="footer-marca">
+                <a href="#inicio" class="footer-nombre">Bite & Go</a>
+                <img src="./frontend/imagenes/logocompleto.png" alt="Logo de Bite&Go" class="footer-logo">
+            </div>
+
+            <div class="footer-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#menu">Menú</a>
+                <a href="#contacto">Contacto</a>
+
+            </div>
+
+            <div class="footer-social">
+                <a href="https://www.instagram.com/biteandgo" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </div>
+
+        </section>
+        <p><small>&copy; 2026 Bite&Go. Todos los derechos reservados.</small></p>
+    </footer>
+</body>
+</html>
