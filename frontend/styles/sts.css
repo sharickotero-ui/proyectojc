@@ -5,7 +5,8 @@
     --quaternary-color: #321e12;
     --quinary-color: #99582A;
     --six-color: #f6f5ed; 
-    --font-family: 'Noto Sans SC', sans-serif;
+    --font-family: 'Carter One', cursive;
+    --font-weight: 400;
     --bg-color: var(--primary-color);
     --letter-spacing: 0.5px;
     
@@ -27,12 +28,12 @@ section {
 
 body{
     background-color: var(--bg-color);
+    color: var(--quaternary-color);
     font-family: var(--font-family);
     font-size: 2rem;
-    font-weight: bolder;
-    line-height: 1.5;
+    font-weight: var(--font-weight);
     letter-spacing: var(--letter-spacing);
-    color: var(--quaternary-color);
+    line-height: 1.5;
 }
 
 a {
@@ -98,7 +99,7 @@ nav .boton-contacto {
     background: var(--tertiary-color);
     color: var(--quaternary-color);
     font-family: var(--font-family);
-    font-weight: bolder;
+    font-weight: var(--font-weight);
     padding: 0.75rem 1.5rem;
     border-radius: 6rem;
     font-size: 2rem;
@@ -110,13 +111,6 @@ nav .boton-contacto:focus-visible{
     background: var(--primary-color);
 }
 
-nav .boton-contacto button {
-    border: none;
-    background: transparent;
-    font-size: inherit;
-    font-weight: inherit;
-    color: inherit;
-}
 
 .perfil img {
     width: 50px;
@@ -130,7 +124,7 @@ nav .boton-contacto button {
     flex-direction: row;
 }
 
-.perfil button {
+.perfil span {
     border: none;
     background: transparent;
     color: var(--quaternary-color);
@@ -159,7 +153,7 @@ nav .boton-contacto button {
     display: inline-block;
     margin-top: 1rem;
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: var(--font-weight);
     border-radius: 999px;
     text-decoration: none;
     transition: transform 0.2s;
@@ -175,7 +169,7 @@ nav .boton-contacto button {
     font-size: 6rem;
     line-height: 1.1;
     margin-bottom: 2.5rem;
-    font-weight: bolder;
+    font-weight: var(--font-weight);
 }
 
 #inicio strong{
@@ -197,7 +191,7 @@ nav .boton-contacto button {
     font-size: 3rem;
     text-transform: uppercase;
     margin-bottom: 1.5rem;
-    font-weight: bolder;
+    font-weight: var(--font-weight);
 }
 
 #inicio p {
@@ -218,7 +212,7 @@ nav .boton-contacto button {
     object-fit: cover;
     object-position: center;
 
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
     mask-image: linear-gradient(to right, transparent 0%, black 25%);
 }
 
@@ -237,7 +231,7 @@ nav .boton-contacto button {
 #titulo-menu {
     margin-bottom: 1rem;
     font-size: 6rem;
-    font-weight: bolder;
+    font-weight: var(--font-weight);
     overflow: hidden;
     transition: .3s;
 }
@@ -250,6 +244,7 @@ nav .boton-contacto button {
 
 #menu p {
     font-size: 2.7rem;
+
 }
 
 .menu-grid {
@@ -294,7 +289,6 @@ nav .boton-contacto button {
     margin-top: 0.5rem;
     margin-bottom: 2rem;
     font-size: 1.7rem;
-    font-weight: normal;
 }
 
 #contacto {
@@ -317,8 +311,8 @@ nav .boton-contacto button {
 #contacto > p {
   max-width: 62rem;
   color: var(--quaternary-color);
-  font-size: var(--font-size);
-  line-height: var(--line-height);
+  font-size: 2rem;
+  line-height: 1.5;
   letter-spacing: var(--letter-spacing);
 }
 
@@ -332,7 +326,7 @@ nav .boton-contacto button {
 
 #contacto > a {
   color: var(--quaternary-color);
-  font-size: var(--font-size);
+  font-size: 2rem;
   letter-spacing: var(--letter-spacing);
   text-decoration: none;
   transition: 0.3s;
@@ -356,7 +350,7 @@ nav .boton-contacto button {
   font-size: 3rem;
   line-height: 1.2;
   letter-spacing: normal;
-  font-weight: bolder;
+  font-weight: var(--font-weight);
 }
 
 #contact-form {
@@ -391,7 +385,7 @@ nav .boton-contacto button {
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: var(--color-tertiary);
+  border-color: var(--tertiary-color);
   box-shadow: 0 0 0 0.3rem rgba(147, 143, 138, 0.32);
 }
 
@@ -400,10 +394,10 @@ nav .boton-contacto button {
   padding: 1.5rem 2.2rem;
   border: 0;
   border-radius: 3rem;
-  font-weight: bolder;
+  font-weight: var(--font-weight);
   background-color: var(--tertiary-color);
   color: var(--quaternary-color);
-  font-size: var(--font-size);
+  font-size: 2rem;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -414,9 +408,11 @@ nav .boton-contacto button {
   transform: translateY(-0.3rem);
 }
 
+
+/* FOOTER */
 footer {
   padding: 3rem 10% 1.5rem;
-  background-color: var(--color-bg);
+  background-color: var(--bg-color);
   color: var(--quaternary-color);
 }
 
@@ -471,7 +467,7 @@ footer > p {
   border-top: 0.1rem solid var(--quaternary-color);
   color: var(--quaternary-color);
   font-size: 1.4rem;
-  letter-spacing: normal;
+  letter-spacing: var(--letter-spacing);
 }
 
 .footer-social h3 {
@@ -497,9 +493,11 @@ footer > p {
   border-top: 0.1rem solid var(--quaternary-color);
   color: var(--quaternary-color);
   font-size: 2.5rem;
-  letter-spacing: normal;
+  letter-spacing: var(--letter-spacing);
 }
 
+
+/* Responsive */
 @media (max-width: 768px) {
     section {
         scroll-margin-top: 2rem;
@@ -530,6 +528,10 @@ footer > p {
     .perfil img {
         width: 3.6rem;
         height: 3.6rem;
+    }
+
+    .perfil span {
+        font-size: 1.6rem;
     }
 
     #inicio {
@@ -612,7 +614,7 @@ footer > p {
         padding: 0.5rem 1rem;
     }
 
-    .perfil button {
+    .perfil span {
         font-size: 1.5rem;
     }
 
@@ -649,112 +651,4 @@ footer > p {
         width: 4rem;
         height: 4rem;
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*RESPONSIVE*/
-@media (max-width: 768px) {
-  .logo img {
-    width: clamp(120px, 35vw, 220px);
-    margin-block: -2rem;
-  }
-
-  nav {
-    gap: 1.2rem;
-  }
-
-  nav a {
-    font-size: 2rem;
-  }
-
-  nav .boton-contacto {
-    font-size: 1.8rem;
-  }
-
-  #inicio {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 3rem 2rem 0;
-  }
-
-  #inicio h1 {
-    font-size: 4.5rem;
-  }
-
-  #inicio strong {
-    font-size: 7rem;
-  }
-
-  #titulo-inicio,
-  #inicio p {
-    font-size: 2.2rem;
-  }
-
-  .foto {
-    height: min(45rem, 60vh);
-  }
-
-  .foto img {
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  #menu {
-    padding-block: 4rem;
-  }
-}
-
-@media (max-width: 480px) {
-  nav {
-    gap: 0.8rem;
-  }
-
-  nav a {
-    font-size: 1.7rem;
-  }
-
-  nav .boton-contacto {
-    font-size: 1.6rem;
-    padding: 0.6rem 1rem;
-  }
-
-  #inicio {
-    padding-inline: 1.5rem;
-  }
-
-  #inicio h1 {
-    font-size: 3.6rem;
-  }
-
-  #inicio strong {
-    font-size: 5.5rem;
-  }
 }
