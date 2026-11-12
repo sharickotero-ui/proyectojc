@@ -1,5 +1,4 @@
-// Cambia esta URL por la de Render cuando despliegues el backend.
-const API_URL = 'http://localhost:3000';
+const API_URL = " https://biteandgo-tq7n.onrender.com"; 
 
 const form = document.getElementById('contact-form');
 const status = document.getElementById('form-status');
@@ -42,3 +41,4 @@ form.addEventListener('submit', async (event) => {
     button.textContent = 'Enviar';
   }
 });
+
