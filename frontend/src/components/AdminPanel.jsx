@@ -6,7 +6,23 @@ import {
   actualizarProducto,
   eliminarProducto,
   obtenerMensajesAdmin,
+  obtenerPedidosAdmin,
+  actualizarEstadoPedido,
 } from "../api.js";
+
+const ESTADOS_PEDIDO = [
+  { valor: "pendiente", etiqueta: "Pendiente" },
+  { valor: "confirmado", etiqueta: "Confirmado" },
+  { valor: "preparando", etiqueta: "Preparando" },
+  { valor: "entregado", etiqueta: "Entregado" },
+  { valor: "cancelado", etiqueta: "Cancelado" },
+];
+
+const formatoPesos = new Intl.NumberFormat("es-CO", {
+  style: "currency",
+  currency: "COP",
+  maximumFractionDigits: 0,
+});
 
 const formularioInicial = {
   id: "",
@@ -28,6 +44,9 @@ function AdminPanel() {
   const [mensajes, setMensajes] = useState([]);
   const [cargandoMensajes, setCargandoMensajes] = useState(false);
   const [errorMensajes, setErrorMensajes] = useState("");
+  const [pedidos, setPedidos] = useState([]);
+  const [cargandoPedidos, setCargandoPedidos] = useState(true);
+  const [errorPedidos, setErrorPedidos] = useState("");
 
   async function cargarProductos() {
     try {
@@ -55,8 +74,37 @@ function AdminPanel() {
     }
   }
 
+  async function cargarPedidos() {
+    setCargandoPedidos(true);
+    setErrorPedidos("");
+
+    try {
+      const datos = await obtenerPedidosAdmin();
+      setPedidos(datos);
+    } catch (error) {
+      setErrorPedidos(error.message);
+    } finally {
+      setCargandoPedidos(false);
+    }
+  }
+
+  async function cambiarEstadoPedido(id, estado) {
+    setErrorPedidos("");
+
+    try {
+      const actualizado = await actualizarEstadoPedido(id, estado);
+
+      setPedidos((actuales) =>
+        actuales.map((pedido) => (pedido._id === id ? actualizado : pedido)),
+      );
+    } catch (error) {
+      setErrorPedidos(error.message);
+    }
+  }
+
   useEffect(() => {
     cargarProductos();
+    cargarPedidos();
   }, []);
 
   function manejarCambio(e) {
@@ -159,6 +207,86 @@ function AdminPanel() {
           Cerrar sesión
         </button>
       </header>
+
+      <section className="admin-pedidos" aria-labelledby="titulo-admin-pedidos">
+        <h2 id="titulo-admin-pedidos">Pedidos</h2>
+
+        <button
+          type="button"
+          onClick={cargarPedidos}
+          disabled={cargandoPedidos}
+        >
+          {cargandoPedidos ? "Actualizando..." : "Actualizar pedidos"}
+        </button>
+
+        {errorPedidos && <p role="alert">{errorPedidos}</p>}
+
+        {!cargandoPedidos && !errorPedidos && pedidos.length === 0 && (
+          <p>Aún no hay pedidos.</p>
+        )}
+
+        <div className="admin-lista admin-lista-pedidos">
+          {pedidos.map((pedido) => (
+            <article
+              key={pedido._id}
+              className={`admin-producto pedido-admin estado-${pedido.estado}`}
+            >
+              <h3>{pedido.codigo}</h3>
+
+              <p>
+                <strong>Cliente:</strong> {pedido.cliente.nombre} ·{" "}
+                <a href={`tel:${pedido.cliente.telefono}`}>
+                  {pedido.cliente.telefono}
+                </a>
+              </p>
+
+              <p>
+                <strong>Entrega:</strong>{" "}
+                {pedido.tipoEntrega === "domicilio"
+                  ? `Domicilio · ${pedido.direccion}`
+                  : "Recoge en el local"}
+              </p>
+
+              {pedido.notas && (
+                <p>
+                  <strong>Notas:</strong> {pedido.notas}
+                </p>
+              )}
+
+              <ul className="pedido-admin-items">
+                {pedido.items.map((item) => (
+                  <li key={item.productoId}>
+                    {item.cantidad} × {item.nombre} ·{" "}
+                    {formatoPesos.format(item.precioUnitario * item.cantidad)}
+                  </li>
+                ))}
+              </ul>
+
+              <p>
+                <strong>Total:</strong> {formatoPesos.format(pedido.total)}
+              </p>
+
+              <p>
+                <strong>Fecha:</strong>{" "}
+                {new Date(pedido.createdAt).toLocaleString("es-CO")}
+              </p>
+
+              <label htmlFor={`estado-${pedido._id}`}>Estado</label>
+              <select
+                id={`estado-${pedido._id}`}
+                value={pedido.estado}
+                onChange={(e) => cambiarEstadoPedido(pedido._id, e.target.value)}
+              >
+                {ESTADOS_PEDIDO.map(({ valor, etiqueta }) => (
+                  <option key={valor} value={valor}>
+                    {etiqueta}
+                  </option>
+                ))}
+              </select>
+            </article>
+          ))}
+        </div>
+      </section>
 
       <section className="admin-formulario">
         <h2>{productoEditando ? "Editar producto" : "Agregar producto"}</h2>

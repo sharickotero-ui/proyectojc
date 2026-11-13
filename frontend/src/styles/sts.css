@@ -939,6 +939,357 @@ footer > p {
 }
 
 /* =========================
+   PEDIDOS: CARRITO, FORMULARIO Y ADMIN
+========================= */
+
+/* Botón "Agregar" en cada producto del menú */
+.menu-grid .producto-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: auto 2rem 2rem;
+}
+
+.menu-grid .producto-acciones .precio {
+    margin: 0;
+}
+
+.boton-agregar {
+    padding: 1rem 2.2rem;
+    border: 0;
+    border-radius: 3rem;
+    background: var(--quaternary-color);
+    color: var(--six-color);
+    font-size: 1.8rem;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.boton-agregar:hover,
+.boton-agregar:focus-visible {
+    background: var(--quinary-color);
+    transform: translateY(-0.2rem);
+}
+
+.boton-agregar.agregado {
+    background: #2e6b3a;
+}
+
+/* Contador de productos junto a "Mi pedido" */
+.pedido-contador {
+    display: inline-grid;
+    place-items: center;
+    min-width: 2.6rem;
+    height: 2.6rem;
+    margin-left: 0.8rem;
+    padding: 0 0.6rem;
+    border-radius: 99rem;
+    background: var(--quaternary-color);
+    color: var(--six-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* Pantalla de pedido con productos */
+.pedido-pagina {
+    min-height: 100vh;
+    padding: 3rem clamp(2rem, 6vw, 7rem) 6rem;
+    background: radial-gradient(circle at top, #fff8e9, var(--primary-color) 65%);
+}
+
+.pedido-pagina .volver-inicio {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: var(--quinary-color);
+    font-size: 1.6rem;
+}
+
+.pedido-pagina h1 {
+    margin-bottom: 2.5rem;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1.12;
+}
+
+.pedido-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: start;
+    max-width: 120rem;
+}
+
+.pedido-resumen,
+.pedido-formulario {
+    min-width: 0;
+    padding: clamp(1.8rem, 3vw, 3rem);
+    background: var(--six-color);
+    border: 0.1rem solid rgb(50 30 18 / 7%);
+    border-radius: 2rem;
+    box-shadow: 0 1.2rem 3.5rem rgb(50 30 18 / 12%);
+}
+
+.pedido-resumen h2,
+.pedido-formulario h2 {
+    margin-bottom: 1.8rem;
+    font-size: 2.6rem;
+}
+
+.pedido-lineas {
+    display: grid;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.pedido-linea {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr) auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 0.1rem solid #eadcc4;
+}
+
+.pedido-linea img {
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    border-radius: 1.2rem;
+}
+
+.pedido-linea h3 {
+    font-size: 2rem;
+}
+
+.pedido-linea p {
+    color: #70513b;
+    font-size: 1.5rem;
+}
+
+.pedido-cantidad {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.8rem;
+}
+
+.pedido-cantidad button {
+    width: 3.4rem;
+    height: 3.4rem;
+    border: 0;
+    border-radius: 50%;
+    background: var(--tertiary-color);
+    color: var(--quaternary-color);
+    font-size: 2rem;
+    line-height: 1;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.pedido-cantidad button:hover:not(:disabled),
+.pedido-cantidad button:focus-visible {
+    background: var(--quaternary-color);
+    color: var(--six-color);
+}
+
+.pedido-cantidad span {
+    min-width: 2.4rem;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.pedido-linea-precio {
+    display: grid;
+    justify-items: end;
+    gap: 0.6rem;
+    font-size: 1.8rem;
+}
+
+.pedido-quitar {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #9e3e32;
+    font-size: 1.4rem;
+    text-decoration: underline;
+}
+
+.pedido-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    font-size: 2.4rem;
+}
+
+.pedido-total strong {
+    color: var(--quinary-color);
+}
+
+.pedido-nota {
+    margin-top: 0.8rem;
+    color: #70513b;
+    font-size: 1.5rem;
+}
+
+.pedido-formulario {
+    display: grid;
+    gap: 2rem;
+}
+
+.pedido-formulario h2 {
+    margin-bottom: 0;
+}
+
+.pedido-formulario .form-group textarea {
+    min-height: 9rem;
+}
+
+.pedido-entrega {
+    display: grid;
+    gap: 1rem;
+    border: 0;
+}
+
+.pedido-entrega legend {
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+    font-size: 1.7rem;
+}
+
+.pedido-entrega label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    border: 0.2rem solid var(--quinary-color);
+    border-radius: 0.8rem;
+    background: var(--primary-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.pedido-entrega label:has(input:checked),
+.pedido-entrega label:focus-within {
+    background: #fffdf8;
+    border-color: var(--tertiary-color);
+    box-shadow: 0 0 0 0.35rem rgb(187 148 87 / 18%);
+}
+
+.pedido-entrega input {
+    width: 2rem;
+    height: 2rem;
+    accent-color: var(--quinary-color);
+}
+
+.pedido-error {
+    color: #a12a2a;
+    font-size: 1.7rem;
+}
+
+.pedido-enviar {
+    padding: 1.5rem 2.2rem;
+    border: 0;
+    border-radius: 3rem;
+    background: var(--tertiary-color);
+    color: var(--quaternary-color);
+    font-size: 2rem;
+    font-weight: var(--font-weight);
+    transition: 0.3s;
+}
+
+.pedido-enviar:hover:not(:disabled) {
+    background: var(--quaternary-color);
+    color: var(--primary-color);
+    transform: translateY(-0.3rem);
+}
+
+.pedido-codigo {
+    display: inline-block;
+    padding: 0.2rem 1.2rem;
+    border-radius: 1rem;
+    background: #fff;
+    color: var(--quinary-color);
+    letter-spacing: 0.2rem;
+}
+
+/* Pedidos en el panel de administración */
+.admin-pedidos > button {
+    margin-bottom: 1.5rem;
+}
+
+.admin-panel select {
+    width: 100%;
+    min-height: 4rem;
+    padding: 0.8rem 1rem;
+    border: 0.2rem solid var(--quinary-color);
+    border-radius: 0.8rem;
+    background: var(--primary-color);
+    color: var(--quaternary-color);
+    font-family: var(--font-family);
+    font-size: 1.5rem;
+}
+
+.admin-lista-pedidos {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 32rem), 1fr));
+}
+
+.pedido-admin {
+    border-left: 0.6rem solid var(--tertiary-color);
+}
+
+.pedido-admin.estado-pendiente { border-left-color: #c98a1b; }
+.pedido-admin.estado-confirmado { border-left-color: #2a6f9e; }
+.pedido-admin.estado-preparando { border-left-color: var(--quinary-color); }
+.pedido-admin.estado-entregado { border-left-color: #2e6b3a; }
+.pedido-admin.estado-cancelado { border-left-color: #9e3e32; }
+
+.pedido-admin a {
+    text-decoration: underline;
+}
+
+.pedido-admin-items {
+    margin-bottom: 0.7rem;
+    color: #70513b;
+    font-size: 1.45rem;
+    list-style: none;
+}
+
+.pedido-admin label {
+    display: block;
+    margin: 0.8rem 0 0.4rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .pedido-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .pedido-linea {
+        grid-template-columns: 6rem minmax(0, 1fr);
+    }
+
+    .pedido-linea img {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .pedido-linea-precio {
+        grid-column: 1 / -1;
+        grid-auto-flow: column;
+        justify-content: space-between;
+        justify-items: start;
+        align-items: center;
+    }
+}
+
+/* =========================
    RESPONSIVE: TABLET
 ========================= */
 
