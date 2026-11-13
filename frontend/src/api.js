@@ -204,3 +204,21 @@ export async function actualizarEstadoPedido(id, estado) {
 
   return resultado
 }
+
+// Chatbot Biti. Envía la pregunta y los mensajes anteriores para que recuerde el contexto.
+// historial es [{ rol: 'usuario' | 'bot', texto }]
+export async function enviarMensajeChat(mensaje, historial) {
+  const response = await fetch(`${API_URL}/api/chat`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ mensaje, historial }),
+  })
+
+  const resultado = await response.json().catch(() => ({}))
+
+  if (!response.ok) {
+    throw new Error(resultado.error || 'Biti no pudo responder')
+  }
+
+  return resultado
+}

@@ -9,6 +9,7 @@ import Menu from './components/Menu.jsx'
 import Contacto from './components/Contacto.jsx'
 import FormularioContacto from './components/FormularioContacto.jsx'
 import Footer from './components/Footer.jsx'
+import Chatbot from './components/Chatbot.jsx'
 
 import Pedido from './components/Pedido.jsx'
 
@@ -82,6 +83,7 @@ function App() {
       </main>
 
       <Footer />
+      <Chatbot />
     </>
   )
 }
