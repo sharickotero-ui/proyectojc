@@ -1,4 +1,4 @@
-const API_URL = " https://biteandgo-tq7n.onrender.com"; 
+const API_URL = "https://biteandgo-tq7n.onrender.com"; 
 
 const form = document.getElementById('contact-form');
 const status = document.getElementById('form-status');

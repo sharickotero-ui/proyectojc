@@ -5,8 +5,8 @@
     --quaternary-color: #321e12;
     --quinary-color: #99582A;
     --six-color: #f6f5ed; 
-    --font-family: 'Carter One', cursive;
-    --font-weight: 400;
+  --font-family: 'Fredoka', sans-serif;
+--font-weight: 500;
     --bg-color: var(--primary-color);
     --letter-spacing: 0.5px;
     
@@ -289,6 +289,16 @@ nav .boton-contacto:focus-visible{
     margin-top: 0.5rem;
     margin-bottom: 2rem;
     font-size: 1.7rem;
+}
+
+.menu-grid article .precio {
+    display: inline-block;
+    margin: 0 2rem 2rem;
+    padding: 0.4rem 1.4rem;
+    background-color: var(--tertiary-color);
+    color: var(--quaternary-color);
+    font-size: 2.2rem;
+    border-radius: 3rem;
 }
 
 #contacto {
