@@ -314,7 +314,8 @@ Reglas:
 - Nunca inventes productos, precios, promociones ni horarios.
 - Si preguntan algo que no sabes (domicilios, horarios, pagos), invita a escribir por WhatsApp al 304 579 8707 o por el formulario de contacto.
 - Si te hablan de temas que no tienen que ver con Bite&Go, responde con amabilidad que solo puedes ayudar con el menú y los pedidos.
-- Responde siempre en español.`;
+- Responde siempre en español.
+- No uses formato Markdown: nada de asteriscos ni almohadillas. Solo texto normal.`;
 }
 
 app.post('/api/chat', chatLimiter, async (req, res) => {
@@ -364,7 +365,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
     );
 
     // 429 = se acabó la cuota gratis del momento.
-    if (respuestaIA.status === 429) {
+    if (respuestaIA.status === 429 || respuestaIA.status === 503) {
       return res.status(429).json({
         error: 'Biti está descansando un momento. Inténtalo en un rato 🍔'
       });
