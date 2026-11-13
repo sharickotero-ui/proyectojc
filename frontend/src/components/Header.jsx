@@ -12,7 +12,6 @@ function Header() {
       <nav aria-label="Navegación principal">
         <a href="#inicio">Inicio</a>
         <a href="#menu">Menú</a>
-        <a href="#contacto">Contacto</a>
 
         <div>
           <a href="#formulario-contacto" className="boton-contacto">
@@ -21,10 +20,9 @@ function Header() {
         </div>
 
         {/* login.html estaba vacío; el enlace queda listo para cuando exista el login */}
-        <div className="perfil">
-          <a href="#inicio">
-            <img src={img('icono-perfil.png')} alt="" aria-hidden="true" />
-            <span>Mi perfil</span>
+        <div className="pedido">
+          <a href="#pedido">
+            <span>Mi pedido</span>
           </a>
         </div>
       </nav>

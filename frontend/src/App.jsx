@@ -8,6 +8,8 @@ import Contacto from './components/Contacto.jsx'
 import FormularioContacto from './components/FormularioContacto.jsx'
 import Footer from './components/Footer.jsx'
 
+import Pedido from './components/Pedido.jsx'
+
 import LoginAdmin from './components/LoginAdmin.jsx'
 import AdminPanel from './components/AdminPanel.jsx'
 
@@ -41,15 +43,24 @@ function App() {
     return <AdminPanel />
   }
 
+  if (ruta === '#pedido') {
+    return <Pedido />
+  }
+
   return (
     <>
       <Header />
+
       <main>
         <Inicio />
         <Menu />
-        <Contacto />
-        <FormularioContacto />
+
+        <div className="contacto-contenedor">
+          <Contacto />
+          <FormularioContacto />
+        </div>
       </main>
+
       <Footer />
     </>
   )
