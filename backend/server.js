@@ -50,13 +50,3 @@ mongoose.connect(process.env.MONGO_URI)
     app.listen(process.env.PORT || 3000, () => console.log('Servidor listo'));
   })
   .catch((error) => console.error('No se pudo conectar a MongoDB:', error));
-
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
-        app.listen(process.env.PORT || 3000, () => {
-            console.log("Servidor listo", process.env.PORT);
-        });
-    })
-    .catch((error) => {
-        console.error("Error al conectar a MongoDB:", error);
-    });
