@@ -9,6 +9,9 @@ const jwt = require('jsonwebtoken');
 const rateLimit = require('express-rate-limit');
 
 const app = express();
+// Render pone un proxy delante del servidor. Sin esto, el límite de
+// intentos trataría a todos los visitantes como si fueran la misma persona.
+app.set('trust proxy', 1);
 
 const {
   PORT = 3000,
@@ -16,7 +19,9 @@ const {
   FRONTEND_URL,
   ADMIN_EMAIL,
   ADMIN_PASSWORD_HASH,
-  JWT_SECRET
+  JWT_SECRET,
+  GEMINI_API_KEY,
+  GEMINI_MODEL = 'gemini-flash-latest'
 } = process.env;
 
 // Validar configuración
@@ -272,6 +277,119 @@ app.post('/api/contacto', async (req, res) => {
     res.status(500).json({
       error: 'Error guardando el mensaje.'
     });
+  }
+});
+
+// CHATBOT CON IA (Gemini)
+
+// Máximo 10 mensajes por minuto por visitante, para cuidar la cuota gratis.
+const chatLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  limit: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    error: 'Estás escribiendo muy rápido. Espera un momento.'
+  }
+});
+
+// Arma las instrucciones del bot con el menú real de la base de datos.
+// Si el admin cambia un precio, el bot lo sabe en el siguiente mensaje.
+function crearInstrucciones(productos) {
+  const menu = productos.length > 0
+    ? productos
+        .map(p => `- ${p.nombre} (${p.precio}): ${p.descripcion}`)
+        .join('\n')
+    : 'El menú no está disponible en este momento.';
+
+  return `Eres Biti, el asistente virtual de Bite&Go, un emprendimiento colombiano de mini hamburguesas. Nuestro lema: "Mini hamburguesas, máxima comodidad".
+
+Tu tono: amigable, alegre y antojador, como alguien joven de Colombia. Respuestas cortas (máximo 3 o 4 frases). Puedes usar un emoji de vez en cuando 🍔.
+
+Este es el menú actual:
+${menu}
+
+Reglas:
+- Solo recomienda productos que estén en el menú de arriba, con su precio exacto.
+- Nunca inventes productos, precios, promociones ni horarios.
+- Si preguntan algo que no sabes (domicilios, horarios, pagos), invita a escribir por WhatsApp al 304 579 8707 o por el formulario de contacto.
+- Si te hablan de temas que no tienen que ver con Bite&Go, responde con amabilidad que solo puedes ayudar con el menú y los pedidos.
+- Responde siempre en español.`;
+}
+
+app.post('/api/chat', chatLimiter, async (req, res) => {
+  const { mensaje, historial = [] } = req.body;
+
+  // Validamos lo que llega antes de gastar cuota de la IA.
+  if (typeof mensaje !== 'string' || !mensaje.trim()) {
+    return res.status(400).json({ error: 'Escribe un mensaje.' });
+  }
+
+  if (mensaje.length > 500) {
+    return res.status(400).json({ error: 'El mensaje es muy largo (máximo 500 caracteres).' });
+  }
+
+  if (!GEMINI_API_KEY) {
+    return res.status(503).json({ error: 'El asistente no está configurado.' });
+  }
+
+  try {
+    const productos = await Product.find({ disponible: true }).lean();
+
+    // Gemini necesita la conversación anterior para recordar el contexto.
+    // Enviamos solo los últimos 10 mensajes para no gastar de más.
+    const conversacion = Array.isArray(historial)
+      ? historial.slice(-10).map(m => ({
+          role: m.rol === 'bot' ? 'model' : 'user',
+          parts: [{ text: String(m.texto).slice(0, 500) }]
+        }))
+      : [];
+
+    conversacion.push({ role: 'user', parts: [{ text: mensaje.trim() }] });
+
+    const respuestaIA = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': GEMINI_API_KEY
+        },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: crearInstrucciones(productos) }] },
+          contents: conversacion,
+          generationConfig: { temperature: 0.7 }
+        })
+      }
+    );
+
+    // 429 = se acabó la cuota gratis del momento.
+    if (respuestaIA.status === 429) {
+      return res.status(429).json({
+        error: 'Biti está descansando un momento. Inténtalo en un rato 🍔'
+      });
+    }
+
+    if (!respuestaIA.ok) {
+      console.error('Error de Gemini:', respuestaIA.status, await respuestaIA.text());
+      return res.status(502).json({ error: 'El asistente no pudo responder.' });
+    }
+
+    const datos = await respuestaIA.json();
+    const texto = datos.candidates?.[0]?.content?.parts
+      ?.map(parte => parte.text || '')
+      .join('')
+      .trim();
+
+    if (!texto) {
+      return res.status(502).json({ error: 'El asistente no pudo responder.' });
+    }
+
+    res.json({ respuesta: texto });
+
+  } catch (error) {
+    console.error('Error en el chat:', error);
+    res.status(500).json({ error: 'Error en el asistente.' });
   }
 });
 
