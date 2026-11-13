@@ -3,7 +3,7 @@ import ProductoCard from './ProductoCard.jsx'
 import { obtenerProductos } from '../api.js'
 import { productos as productosLocales } from '../data/productos.js'
 
-function Menu() {
+function Menu({ onAgregar }) {
   const [productos, setProductos] = useState([])
   const [cargando, setCargando] = useState(true)
 
@@ -47,6 +47,7 @@ function Menu() {
           <ProductoCard
             key={producto._id || producto.id}
             producto={producto}
+            onAgregar={onAgregar}
             style={{ animationDelay: `${index * 120}ms` }}
           />
         ))}

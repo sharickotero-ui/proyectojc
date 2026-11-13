@@ -1,6 +1,6 @@
 import { img } from '../img.js'
 
-function Header() {
+function Header({ cantidadPedido = 0 }) {
   return (
     <header>
       <div className="logo">
@@ -20,8 +20,20 @@ function Header() {
         </div>
 
         <div className="pedido">
-          <a href="#pedido">
-            <span>Mi pedido</span>
+          <a
+            href="#pedido"
+            aria-label={
+              cantidadPedido > 0
+                ? `Mi pedido, ${cantidadPedido} ${cantidadPedido === 1 ? 'producto' : 'productos'}`
+                : 'Mi pedido'
+            }
+          >
+            <span>
+              Mi pedido
+              {cantidadPedido > 0 && (
+                <b className="pedido-contador" aria-hidden="true">{cantidadPedido}</b>
+              )}
+            </span>
           </a>
         </div>
       </nav>

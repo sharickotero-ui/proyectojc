@@ -143,3 +143,64 @@ export async function obtenerMensajesAdmin() {
 
   return resultado
 }
+
+
+// Envía un pedido. Recibe { nombre, telefono, tipoEntrega, direccion, notas, items }
+// donde items es [{ id, cantidad }]. El precio y el total los calcula el servidor.
+// Si algún producto ya no está disponible, el Error trae `noDisponibles` (ids).
+export async function crearPedido(datos) {
+  const response = await fetch(`${API_URL}/api/pedidos`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(datos),
+  })
+
+  const resultado = await response.json().catch(() => ({}))
+
+  if (!response.ok) {
+    const error = new Error(resultado.error || 'No pudimos registrar tu pedido')
+    error.noDisponibles = resultado.noDisponibles || []
+    throw error
+  }
+
+  return resultado
+}
+
+// Pedidos para el administrador
+export async function obtenerPedidosAdmin() {
+  const response = await fetch(`${API_URL}/api/admin/pedidos`, {
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem('adminToken')}`,
+    },
+  })
+
+  const resultado = await response.json()
+
+  if (!response.ok) {
+    throw new Error(resultado.error || 'Error consultando pedidos')
+  }
+
+  return resultado
+}
+
+export async function actualizarEstadoPedido(id, estado) {
+  const response = await fetch(
+    `${API_URL}/api/admin/pedidos/${encodeURIComponent(id)}/estado`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${sessionStorage.getItem('adminToken')}`,
+      },
+      body: JSON.stringify({ estado }),
+    }
+  )
+
+  const resultado = await response.json()
+
+  if (!response.ok) {
+    throw new Error(resultado.error || 'Error actualizando el pedido')
+  }
+
+  return resultado
+}
