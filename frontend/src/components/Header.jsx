@@ -19,7 +19,6 @@ function Header() {
           </a>
         </div>
 
-        {/* login.html estaba vacío; el enlace queda listo para cuando exista el login */}
         <div className="pedido">
           <a href="#pedido">
             <span>Mi pedido</span>

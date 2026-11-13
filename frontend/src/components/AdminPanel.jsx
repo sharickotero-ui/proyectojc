@@ -149,9 +149,12 @@ function AdminPanel() {
   }
 
   return (
-    <main className="admin-panel">
+    <main className="admin-panel animate__animated animate__fadeIn">
       <header className="admin-header">
-        <h1>Administración Bite&Go</h1>
+        <div>
+          <h1>Administración Bite&Go</h1>
+          <a className="admin-volver" href="#inicio">Volver a la página</a>
+        </div>
         <button type="button" onClick={cerrarSesion}>
           Cerrar sesión
         </button>
@@ -254,7 +257,7 @@ function AdminPanel() {
 
         <div className="admin-lista">
           {productos.map((producto) => (
-            <article key={producto._id} className="admin-producto">
+            <article key={producto._id || producto.id} className="admin-producto">
               <h3>{producto.nombre}</h3>
               <p>{producto.descripcion}</p>
               <p>Precio: {producto.precio}</p>
@@ -269,6 +272,23 @@ function AdminPanel() {
 
               <button
                 type="button"
+                className="boton-secundario"
+                onClick={async () => {
+                  try {
+                    await actualizarProducto(producto.id, { disponible: !producto.disponible });
+                    setMensaje(`Producto ${producto.disponible ? "desactivado" : "activado"} correctamente.`);
+                    await cargarProductos();
+                  } catch (error) {
+                    setError(error.message);
+                  }
+                }}
+              >
+                {producto.disponible ? "Desactivar" : "Activar"}
+              </button>
+
+              <button
+                type="button"
+                className="boton-eliminar"
                 onClick={() => manejarEliminacion(producto.id, producto.nombre)}
               >
                 Eliminar

@@ -18,6 +18,7 @@ function Footer() {
           <a href="#inicio">Inicio</a>
           <a href="#menu">Menú</a>
           <a href="#contacto">Contacto</a>
+          <a href="#admin">Administración</a>
         </div>
 
         <div className="footer-social">

@@ -33,14 +33,17 @@ function LoginAdmin() {
   }
 
   return (
-    <section className="login-admin">
+    <section className="login-admin animate__animated animate__fadeInUp">
       <h1>Administración Bite&Go</h1>
       <p>Ingresa tus credenciales de administrador.</p>
+      <a className="login-volver" href="#inicio">← Volver a Bite&Go</a>
 
       <form onSubmit={manejarInicioSesion}>
         <label htmlFor="admin-email">Correo electrónico</label>
         <input
           id="admin-email"
+          name="email"
+          autoComplete="username"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -50,6 +53,8 @@ function LoginAdmin() {
         <label htmlFor="admin-password">Contraseña</label>
         <input
           id="admin-password"
+          name="password"
+          autoComplete="current-password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

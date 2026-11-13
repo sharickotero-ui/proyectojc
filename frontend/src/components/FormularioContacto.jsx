@@ -47,6 +47,7 @@ function FormularioContacto() {
   return (
     <section
       id="formulario-contacto"
+      className="animate__animated animate__fadeInUp"
       aria-labelledby="titulo-formulario-contacto"
     >
       <h2 id="titulo-formulario-contacto">Escríbenos</h2>

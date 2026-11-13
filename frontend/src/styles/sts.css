@@ -689,3 +689,559 @@ footer > p {
         height: 4rem;
     }
 }
+/* -------------------------------------------------------------------------- */
+/* CAPA VISUAL COMPLEMENTARIA · Bite&Go                                       */
+/* Se conservan las variables y reglas originales; estos estilos completan   */
+/* estados, accesibilidad, administración y adaptación a pantallas pequeñas. */
+/* -------------------------------------------------------------------------- */
+
+:root {
+    --sombra-suave: 0 1.2rem 3.5rem rgb(50 30 18 / 12%);
+    --sombra-fuerte: 0 1.8rem 4.5rem rgb(50 30 18 / 18%);
+    --radio-card: 2rem;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+::selection {
+    color: var(--six-color);
+    background: var(--quinary-color);
+}
+
+:focus-visible {
+    outline: 0.3rem solid var(--tertiary-color);
+    outline-offset: 0.35rem;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Navegación y portada */
+header:not(.admin-header) {
+    backdrop-filter: blur(1.2rem);
+    box-shadow: 0 0.4rem 1.8rem rgb(50 30 18 / 10%);
+}
+
+nav a:not(.boton-contacto):hover,
+nav a:not(.boton-contacto):focus-visible {
+    transform: translateY(-0.2rem);
+}
+
+.inicio-texto {
+    padding-block: 4rem;
+}
+
+.inicio-texto .boton-principal,
+.boton-principal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-top: 2.2rem;
+    padding: 1.25rem 2.4rem;
+    border-radius: 99rem;
+    background: var(--quaternary-color);
+    color: var(--six-color);
+    font-size: 1.9rem;
+    font-weight: 600;
+    box-shadow: 0 0.8rem 1.8rem rgb(50 30 18 / 16%);
+    transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.inicio-texto .boton-principal:hover,
+.boton-principal:hover {
+    color: var(--six-color);
+    background: var(--quinary-color);
+    transform: translateY(-0.35rem);
+    box-shadow: var(--sombra-fuerte);
+}
+
+.boton-principal span {
+    font-size: 2.4rem;
+    transition: transform 0.25s ease;
+}
+
+.boton-principal:hover span {
+    transform: translateX(0.35rem);
+}
+
+.foto {
+    border-radius: 3rem 0 0 3rem;
+}
+
+.foto img {
+    transition: transform 0.8s ease;
+}
+
+.foto:hover img {
+    transform: scale(1.035);
+}
+
+/* Catálogo */
+#menu {
+    position: relative;
+}
+
+#menu > div:first-child > b {
+    display: inline-block;
+    margin-bottom: 0.6rem;
+}
+
+.menu-grid article {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    border: 0.1rem solid rgb(50 30 18 / 7%);
+    border-radius: var(--radio-card);
+    box-shadow: var(--sombra-suave);
+}
+
+.menu-grid article img {
+    transition: transform 0.55s ease;
+}
+
+.menu-grid article:hover img {
+    transform: scale(1.045);
+}
+
+.menu-grid article h3 {
+    color: var(--quaternary-color);
+}
+
+.menu-grid article p {
+    flex: 1;
+    color: #70513b;
+    line-height: 1.55;
+}
+
+.menu-grid article .precio {
+    align-self: flex-start;
+    margin-top: auto;
+    font-weight: 600;
+}
+
+/* Contacto */
+.contacto-contenedor {
+    background: linear-gradient(135deg, var(--primary-color), #ead7b5);
+}
+
+#contacto > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem 1.3rem;
+    border-radius: 1rem;
+    background: rgb(255 255 255 / 35%);
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+#contacto > a:hover {
+    color: var(--quaternary-color);
+    background: rgb(255 255 255 / 75%);
+    transform: translateX(0.4rem);
+}
+
+#formulario-contacto {
+    border: 0.1rem solid rgb(50 30 18 / 7%);
+    box-shadow: var(--sombra-suave);
+}
+
+.form-group input,
+.form-group textarea {
+    min-height: 4.8rem;
+    font-size: 1.8rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.form-group textarea {
+    min-height: 13rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    background: #fffdf8;
+    border-color: var(--tertiary-color);
+    box-shadow: 0 0 0 0.35rem rgb(187 148 87 / 18%);
+}
+
+#contact-form button[type="submit"]:hover:not(:disabled) {
+    background: var(--quaternary-color);
+}
+
+/* Pie de página */
+footer {
+    background: #eadcc4;
+}
+
+.footer-social img {
+    width: 4.2rem;
+    height: 4.2rem;
+    border-radius: 50%;
+    transition: transform 0.25s ease;
+}
+
+.footer-social a:hover img {
+    transform: rotate(-8deg) scale(1.08);
+}
+
+footer > p {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+/* Pantalla de pedido */
+.pagina-pedido {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 2rem;
+    text-align: center;
+    background: radial-gradient(circle at top, #fff8e9, var(--primary-color) 65%);
+}
+
+.pagina-pedido .volver-inicio {
+    position: absolute;
+    top: 2.5rem;
+    left: clamp(2rem, 6vw, 7rem);
+    font-size: 1.6rem;
+    color: var(--quinary-color);
+}
+
+.pedido-icono {
+    display: grid;
+    place-items: center;
+    width: 8rem;
+    height: 8rem;
+    margin-bottom: 2rem;
+    border-radius: 2.5rem;
+    background: #fff;
+    font-size: 3.8rem;
+    box-shadow: var(--sombra-suave);
+}
+
+.pagina-pedido h1 {
+    max-width: 70rem;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.12;
+}
+
+.pagina-pedido p {
+    max-width: 55rem;
+    margin-top: 1.5rem;
+    color: #70513b;
+    font-size: 1.8rem;
+}
+
+/* Acceso y panel administrativo */
+.login-admin {
+    min-height: 100vh;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    padding: 3rem 2rem;
+    background: radial-gradient(circle at top right, #fff8e9, var(--primary-color) 70%);
+}
+
+.login-admin > h1,
+.login-admin > p {
+    width: min(100%, 46rem);
+    text-align: center;
+}
+
+.login-admin > h1 {
+    margin-bottom: 0.8rem;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+}
+
+.login-admin > p {
+    margin-bottom: 1rem;
+    color: #70513b;
+    font-size: 1.7rem;
+}
+
+.login-volver {
+    margin-bottom: 2.2rem;
+    color: var(--quinary-color);
+    font-size: 1.5rem;
+}
+
+.admin-volver {
+    display: inline-block;
+    margin-top: 0.3rem;
+    color: #eadcc4;
+    font-size: 1.35rem;
+}
+
+.login-admin form,
+.admin-formulario form {
+    display: grid;
+    gap: 1.2rem;
+}
+
+.login-admin form {
+    width: min(100%, 46rem);
+    padding: clamp(2rem, 5vw, 3.5rem);
+    border: 0.1rem solid rgb(50 30 18 / 8%);
+    border-radius: 2rem;
+    background: var(--six-color);
+    box-shadow: var(--sombra-fuerte);
+}
+
+.login-admin label,
+.admin-formulario label {
+    color: var(--quaternary-color);
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.login-admin input,
+.admin-panel input,
+.admin-panel textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 1.1rem 1.3rem;
+    border: 0.1rem solid #d4c2a7;
+    border-radius: 0.9rem;
+    background: #fffdf8;
+    color: var(--quaternary-color);
+    font: inherit;
+    font-size: 1.6rem;
+}
+
+.login-admin input:focus,
+.admin-panel input:focus,
+.admin-panel textarea:focus {
+    outline: none;
+    border-color: var(--tertiary-color);
+    box-shadow: 0 0 0 0.3rem rgb(187 148 87 / 18%);
+}
+
+.login-admin button,
+.admin-panel button {
+    width: fit-content;
+    padding: 1rem 1.8rem;
+    border: 0;
+    border-radius: 99rem;
+    background: var(--quaternary-color);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.login-admin button {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.login-admin button:hover:not(:disabled),
+.admin-panel button:hover:not(:disabled) {
+    background: var(--quinary-color);
+    transform: translateY(-0.2rem);
+}
+
+.login-admin [role="alert"],
+.admin-panel [role="alert"] {
+    color: #a12a2a;
+    font-size: 1.5rem;
+}
+
+.admin-panel {
+    min-height: 100vh;
+    display: grid;
+    gap: 2.5rem;
+    padding: clamp(1.5rem, 4vw, 4rem);
+    background: #f8f3e9;
+}
+
+.admin-panel .admin-header {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.8rem 2.4rem;
+    border-radius: 1.5rem;
+    background: var(--quaternary-color);
+    color: white;
+    box-shadow: var(--sombra-suave);
+}
+
+.admin-header h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+}
+
+.admin-panel > section {
+    min-width: 0;
+    padding: clamp(1.8rem, 3vw, 3rem);
+    border: 0.1rem solid rgb(50 30 18 / 8%);
+    border-radius: 1.7rem;
+    background: #fffdf8;
+    box-shadow: var(--sombra-suave);
+}
+
+.admin-panel h2 {
+    margin-bottom: 1.8rem;
+    font-size: 2.5rem;
+}
+
+.admin-formulario form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+}
+
+.admin-formulario form label,
+.admin-formulario form textarea,
+.admin-formulario form button,
+.admin-formulario form [role="alert"],
+.admin-formulario form [role="status"] {
+    grid-column: 1 / -1;
+}
+
+.admin-formulario textarea {
+    min-height: 10rem;
+    resize: vertical;
+}
+
+.admin-formulario form button + button {
+    margin-top: 0.5rem;
+    background: #8b765f;
+}
+
+.admin-lista,
+.lista-mensajes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+    gap: 1.5rem;
+}
+
+.admin-producto,
+.mensaje-card {
+    min-width: 0;
+    padding: 1.8rem;
+    border: 0.1rem solid #eadcc4;
+    border-radius: 1.3rem;
+    background: #fffaf1;
+    overflow-wrap: anywhere;
+}
+
+.admin-producto h3,
+.mensaje-card h3 {
+    margin-bottom: 0.8rem;
+    font-size: 2rem;
+}
+
+.admin-producto p,
+.mensaje-card p {
+    margin-bottom: 0.7rem;
+    color: #70513b;
+    font-size: 1.45rem;
+}
+
+.admin-producto button {
+    margin: 0.8rem 0.6rem 0 0;
+}
+
+.admin-panel button.boton-secundario {
+    background: #8b765f;
+}
+
+.admin-panel button.boton-eliminar {
+    background: #9e3e32;
+}
+
+.admin-mensajes > button {
+    margin-bottom: 1.5rem;
+}
+
+/* Movimiento accesible: respetar la preferencia del sistema operativo. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Ajustes de tablet y móvil */
+@media (max-width: 768px) {
+    header:not(.admin-header) {
+        padding-block: 0.8rem;
+    }
+
+    .foto {
+        border-radius: 2rem;
+    }
+
+    .foto img {
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .contacto-contenedor {
+        padding-inline: 2rem;
+    }
+
+    .admin-panel .admin-header {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 560px) {
+    body {
+        font-size: 1.7rem;
+    }
+
+    nav {
+        gap: 0.8rem;
+    }
+
+    nav a,
+    .pedido a {
+        font-size: 1.55rem;
+    }
+
+    nav .boton-contacto,
+    .pedido span {
+        padding: 0.65rem 1rem;
+        font-size: 1.45rem;
+    }
+
+    #inicio strong,
+    #inicio b,
+    #inicio b:nth-child(3) {
+        font-size: clamp(4.5rem, 18vw, 7rem);
+    }
+
+    .foto {
+        height: 26rem;
+    }
+
+    #formulario-contacto {
+        margin-inline: 0;
+        padding: 2rem;
+    }
+
+    .admin-formulario form {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-panel .admin-header {
+        align-items: flex-start;
+    }
+
+    .admin-panel .admin-header button {
+        width: 100%;
+    }
+}

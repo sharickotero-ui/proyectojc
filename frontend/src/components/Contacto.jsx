@@ -1,6 +1,6 @@
 function Contacto() {
   return (
-    <section id="contacto" aria-labelledby="titulo-contacto">
+    <section id="contacto" className="animate__animated animate__fadeInUp" aria-labelledby="titulo-contacto">
       <h2 id="titulo-contacto">¡Contáctanos!</h2>
 
       <p>
