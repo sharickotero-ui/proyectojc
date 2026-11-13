@@ -27,8 +27,8 @@ npm run dev
 **Terminal 2 · frontend**
 ```bash
 cd frontend
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 Abre http://localhost:5173. El formulario de contacto envía a http://localhost:3000.
@@ -46,10 +46,12 @@ Abre http://localhost:5173. El formulario de contacto envía a http://localhost:
 ## Comprobar antes de entregar
 ```bash
 cd frontend
-npm run lint
-npm run build
+pnpm run lint
+pnpm run build
 ```
 
 ## Publicación
 - **API:** Render, con *Root Directory* = `backend`, *Build Command* = `npm install` y *Start Command* = `npm start`.
-- **Frontend:** GitHub Pages con el workflow de `.github/workflows/deploy.yml` (Settings → Pages → Source: GitHub Actions).
+- - **Frontend:** GitHub Pages con la rama `gh-pages`. Desde la carpeta `frontend`:
+  `pnpm run deploy` (construye y publica `dist`).
+  En Settings → Pages: Source = Deploy from a branch → `gh-pages`.
