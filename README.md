@@ -33,6 +33,18 @@ pnpm run dev
 
 Abre http://localhost:5173. El frontend consume la API configurada en `VITE_API_URL`. Si quieres trabajar contra tu backend local, configura esa variable como `http://localhost:3000`. Si MongoDB aún no tiene productos, el catálogo muestra los productos locales de respaldo.
 
+## Pedidos
+
+Los clientes agregan productos desde el menú (botón **Agregar**), revisan el pedido en `#pedido` (cantidades, total) y lo confirman con su nombre, teléfono y tipo de entrega (domicilio o recoger). Reciben un código tipo `BG-7K2M9Q`. El pago es contra entrega.
+
+| Ruta | Acceso | Qué hace |
+|---|---|---|
+| `POST /api/pedidos` | Público (máx. 10 / 15 min por IP) | Crea un pedido. El cliente solo envía `id` y `cantidad`; **el precio y el total los calcula el servidor** con el catálogo |
+| `GET /api/admin/pedidos` | Admin (JWT) | Lista los últimos 200 pedidos (`?estado=pendiente` para filtrar) |
+| `PUT /api/admin/pedidos/:id/estado` | Admin (JWT) | Cambia el estado: `pendiente`, `confirmado`, `preparando`, `entregado`, `cancelado` |
+
+El administrador ve y gestiona los pedidos en `#admin-panel`. Los precios se guardan como texto (`$12.000`) y se interpretan como pesos colombianos sin decimales. El carrito se guarda en el navegador (`localStorage`) para no perderse al recargar.
+
 ## Animaciones
 
 La interfaz utiliza [Animate.css 4.1.1](https://animate.style/) desde CDN para animaciones de entrada y microinteracciones. No cambia las rutas ni la lógica de la API.

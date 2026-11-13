@@ -7,8 +7,18 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const rateLimit = require('express-rate-limit');
+const {
+  ESTADOS,
+  CATALOGO_INICIAL,
+  validarPedido,
+  construirItems,
+  generarCodigo
+} = require('./pedidos');
 
 const app = express();
+
+// Render pone un proxy delante: así req.ip es la IP real del visitante.
+app.set('trust proxy', 1);
 
 const {
   PORT = 3000,
@@ -115,6 +125,56 @@ const productSchema = new mongoose.Schema({
 
 const Product = mongoose.model('Product', productSchema);
 
+const orderSchema = new mongoose.Schema({
+  codigo: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  cliente: {
+    nombre: { type: String, required: true, trim: true, maxlength: 100 },
+    telefono: { type: String, required: true, trim: true }
+  },
+  tipoEntrega: {
+    type: String,
+    enum: ['domicilio', 'recoger'],
+    required: true
+  },
+  direccion: {
+    type: String,
+    trim: true,
+    maxlength: 200,
+    default: ''
+  },
+  notas: {
+    type: String,
+    trim: true,
+    maxlength: 300,
+    default: ''
+  },
+  items: [{
+    _id: false,
+    productoId: { type: String, required: true },
+    nombre: { type: String, required: true },
+    precioUnitario: { type: Number, required: true, min: 0 },
+    cantidad: { type: Number, required: true, min: 1 }
+  }],
+  total: {
+    type: Number,
+    required: true,
+    min: 0
+  },
+  estado: {
+    type: String,
+    enum: ESTADOS,
+    default: 'pendiente'
+  }
+}, {
+  timestamps: true
+});
+
+const Order = mongoose.model('Order', orderSchema);
+
 // AUTENTICACIÓN
 
 const loginLimiter = rateLimit({
@@ -124,6 +184,16 @@ const loginLimiter = rateLimit({
   legacyHeaders: false,
   message: {
     error: 'Demasiados intentos. Inténtalo más tarde.'
+  }
+});
+
+const pedidoLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    error: 'Has enviado muchos pedidos seguidos. Inténtalo en unos minutos.'
   }
 });
 
@@ -226,6 +296,80 @@ app.get('/api/productos', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       error: 'Error consultando productos.'
+    });
+  }
+});
+
+// CREAR PEDIDO (público)
+
+app.post('/api/pedidos', pedidoLimiter, async (req, res) => {
+  const { error, datos } = validarPedido(req.body);
+
+  if (error) {
+    return res.status(400).json({ error });
+  }
+
+  try {
+    const ids = datos.cantidades.map(({ id }) => id);
+
+    let productos = await Product.find({
+      id: { $in: ids },
+      disponible: true
+    });
+
+    // Si el catálogo de MongoDB aún está vacío, el menú muestra el catálogo
+    // base; se acepta el pedido contra ese mismo catálogo.
+    if (productos.length === 0 && (await Product.estimatedDocumentCount()) === 0) {
+      productos = CATALOGO_INICIAL.filter(({ id }) => ids.includes(id));
+    }
+
+    const resultado = construirItems(datos.cantidades, productos);
+
+    if (resultado.error) {
+      return res.status(409).json({
+        error: resultado.error,
+        noDisponibles: resultado.noDisponibles
+      });
+    }
+
+    let pedido = null;
+
+    // El código es aleatorio; si choca con otro (muy improbable) se reintenta.
+    for (let intento = 0; intento < 5 && !pedido; intento++) {
+      try {
+        pedido = await Order.create({
+          codigo: generarCodigo(),
+          cliente: {
+            nombre: datos.nombre,
+            telefono: datos.telefono
+          },
+          tipoEntrega: datos.tipoEntrega,
+          direccion: datos.direccion,
+          notas: datos.notas,
+          items: resultado.items,
+          total: resultado.total
+        });
+      } catch (errorCrear) {
+        if (errorCrear.code !== 11000) throw errorCrear;
+      }
+    }
+
+    if (!pedido) {
+      throw new Error('No se pudo generar un código de pedido único.');
+    }
+
+    res.status(201).json({
+      ok: true,
+      codigo: pedido.codigo,
+      total: pedido.total,
+      estado: pedido.estado
+    });
+
+  } catch (errorPedido) {
+    console.error('Error creando pedido:', errorPedido);
+
+    res.status(500).json({
+      error: 'No pudimos registrar tu pedido. Inténtalo de nuevo.'
     });
   }
 });
@@ -432,6 +576,68 @@ app.get('/api/admin/mensajes', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       error: 'Error consultando mensajes.'
+    });
+  }
+});
+
+// CONSULTAR PEDIDOS
+
+app.get('/api/admin/pedidos', async (req, res) => {
+  try {
+    const filtro = {};
+
+    if (typeof req.query.estado === 'string' && ESTADOS.includes(req.query.estado)) {
+      filtro.estado = req.query.estado;
+    }
+
+    const pedidos = await Order.find(filtro)
+      .sort({ createdAt: -1 })
+      .limit(200);
+
+    res.json(pedidos);
+
+  } catch (error) {
+    res.status(500).json({
+      error: 'Error consultando pedidos.'
+    });
+  }
+});
+
+// CAMBIAR ESTADO DE UN PEDIDO
+
+app.put('/api/admin/pedidos/:id/estado', async (req, res) => {
+  const { estado } = req.body;
+
+  if (!ESTADOS.includes(estado)) {
+    return res.status(400).json({
+      error: 'Estado inválido.'
+    });
+  }
+
+  if (!mongoose.isValidObjectId(req.params.id)) {
+    return res.status(404).json({
+      error: 'Pedido no encontrado.'
+    });
+  }
+
+  try {
+    const pedido = await Order.findByIdAndUpdate(
+      req.params.id,
+      { estado },
+      { new: true, runValidators: true }
+    );
+
+    if (!pedido) {
+      return res.status(404).json({
+        error: 'Pedido no encontrado.'
+      });
+    }
+
+    res.json(pedido);
+
+  } catch (error) {
+    res.status(500).json({
+      error: 'Error actualizando el pedido.'
     });
   }
 });
